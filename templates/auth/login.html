@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="/static/css/auth.css">
+</head>
+
+<body>
+    <div class="auth">
+        <div class="auth-container">
+            <div>
+                <h1><i>Joseph's site</i></h1>
+            </div>
+            <div class="auth-form">
+                <form action="/login" method="POST">
+                    <div class="auth-form-item">
+                        <label for="email" class="auth-form-field-name">Email</label>
+                        <div class="form-textbox">
+                            <input id="email" type="email" class="auth-form-control" name="email" value=""
+                                placeholder="Type your email" autocomplete="email" autofocus>
+                            <span class="invalid-feedback" role="alert">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="auth-form-item">
+                        <label for="password" class="auth-form-field-name">Password</label>
+                        <div class="form-textbox">
+                            <input id="password" type="password" class="auth-form-control" name="password"
+                                placeholder="Type your password" required autocomplete="current-password">
+                            <span class="invalid-feedback" role="alert">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="auth-form-item">
+                        <div class="form-check">
+                            <div class="remember-me"> 
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                <label class="form-check-label" for="remember">Remember Me</label>
+                            </div>
+                            <div>
+                                <a class="auth-btn-link" href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="auth-form-item">
+                    </div>
+
+                    <div class="auth-form-item">
+                        <div class="form-submit">
+                            <button type="submit" class="auth-btn-primary" onclick="window.location.href='#';">LogIn</button>
+                            <button type="submit" class="auth-btn-secondary" onclick="window.location.href='#';">Customer Login</button>
+                            <p>Don't have an account?
+                                <a class="signup" href="/register">Sign up</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

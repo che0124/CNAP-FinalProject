@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./../static/css/style.css">
+    <link rel="stylesheet" href="./../static/css/navbar.css">
+    <link rel="stylesheet" href="./../static/css/dashboard.css">
+    <link rel="stylesheet" href="./../static/css/showTagPosts.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="extra-content">
+            <div class="add-post">
+                <h3>{{tag[1]}} Add New Post</h3>
+                <button id="createPostButton" type="button" onclick="createPostPage('{{ tag[0] }}')">Create Post</button>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="showTag">
+                <div class="posts-category">
+                    <a href="/showTagPosts/{{ tag[0] }}">{{ tag['tag_name'] }}</a>
+
+                    <div class="posts-tags">
+                        <a href="#" class="active">All</a>
+                        <a href="#">Follow</a>
+                        <a href="#">Topic</a>
+                    </div>
+                </div>
+                <div class="posts-container">
+                    {% for post in posts %}
+                    <article class="post">
+                        <h2 class="post-title">{{ post['title'] }}</h2>
+                        <p class="post-content">{{ post['content'] }}</p>
+                        <a href="/showPost" class="read-more">Read more</a>
+                    </article>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./../static/js/showTagPosts.js"></script>
+    <script src="./../static/js/navbar.js"></script>
+</body>
+
+</html>

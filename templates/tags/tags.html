@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/navbar.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/tags.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="page-container">
+            <div class="tags">
+                <div class="tags-title">
+                    <span>Post Categories</span>
+                </div>
+                <div class="tags-container">
+                    {% for tag in tags %}
+                    <a href="/showTagPosts/{{ tag[0] }}">{{ tag[1] }} <span class="tag-follow">follow</span></a>
+                    <hr>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="static/js/navbar.js"></script>
+    <script src="static/js/dashboard.js"></script>
+</body>
+
+</html>

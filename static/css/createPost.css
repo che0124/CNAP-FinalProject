@@ -1,0 +1,93 @@
+/* create */
+.create-post-container {
+    padding: 30px;
+    width: 668px;
+    height: 100vh; 
+    max-height: 100vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #414850;
+    color: white;
+    overflow-y: auto;
+}
+
+.create-post-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.create-post-tag {
+    padding: 5px 10px;  
+    border-radius: 5px;
+    background-color: #b4b4b470;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.create-post-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.create-post-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 30px;
+}
+
+.user-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: #ffffff solid 3px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.form-item {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4a98ff;
+}
+
+.form-control {
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #23282e;
+    color: white;
+}
+
+.form-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a98ff;
+    color: white;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #3a78d7;
+}
+

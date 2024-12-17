@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>editProfile</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="page-container">
+            <div class="edit-profile-container">
+                <form method="POST" action="">
+                    <div class="profile-avatar">
+                        <img src="/static/assets/user.png" alt="User Image">
+                    </div>
+                    <div class="edit-picture">
+                        <a href="#">Edit picture</a>
+                    </div>
+                    <div class="form-item">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" nametype="text" class="form-control" name="name" placeholder="Add name"
+                            required>
+                    </div>
+                    <div class="form-item">
+                        <label for="Username" class="form-label">Username</label>
+                        <input id="Username" class="form-control" name="Username" rows="10"
+                            placeholder="Enter post Username"></input>
+                    </div>
+                    <div class="form-item">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea id="bio" class="form-control" name="bio" rows="2" placeholder="Bio"></textarea>
+                    </div>
+                    <div class="form-item-btn">
+                        <button type="submit" class="form-button">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/navbar.js"></script>
+</body>
+
+</html>

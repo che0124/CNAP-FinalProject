@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./../static/css/style.css">
+    <link rel="stylesheet" href="./../static/css/navbar.css">
+    <link rel="stylesheet" href="./../static/css/dashboard.css">
+    <link rel="stylesheet" href="./../static/css/home.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="page-container">
+            <div class="home">
+                <div class="post-header">
+                    <div class="posts-filter">
+                        <a href="#" class="active">All</a>
+                        <a href="#">Follow</a>
+                        <a href="#">Topic</a>
+                    </div>
+                </div>
+
+                <div class="posts-container">
+                    {% for post, time_elapsed in zip(posts, time_elapsed_list) %}
+                    <article class="post">
+                        <!-- 標籤名稱 -->
+                        <div class="post-tag-name">
+                            <a class="tag-link" href="/showTagPosts/{{ post['pk_tag_id'] }}">
+                                {{ post['tag_name'] }}
+                            </a>
+                            <span>{{ time_elapsed }}</span>
+                        </div>
+
+                        <!-- 文章標題和內容 -->
+                        <a class="read-more" href="/showPost/{{ post['pk_post_id'] }}">
+                            <h2 class="post-title">{{ post['title'] }}</h2>
+                            <p class="post-content">{{ post['content'] }}</p>
+                        </a>
+
+                        <!-- 讚數和留言數 -->
+                        <div class="post-stats">
+                            <span class="likes">
+                                <i class="fi fi-rs-heart"></i>
+                            </span>
+                            <span>{{ post['likes_count'] }}</span>
+                            <span class="comments">
+                                <i class="fi fi-rr-comment-alt"></i>
+                            </span>
+                            <span>{{ post['comments_count'] }}</span>
+                        </div>
+                    </article>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <script src="./../static/js/navbar.js"></script>
+        <script src="./../static/js/dashboard.js"></script>
+        <script src="./../static/js/home.js"></script>
+</body>
+
+</html>

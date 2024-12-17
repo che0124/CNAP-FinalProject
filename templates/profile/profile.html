@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="page-container">
+            <div class="profile">
+                <div class="profile-user-info">
+                    <div class="profile-avatar">
+                        <img src="/static/assets/user.png" alt="User Image">
+                    </div>
+                    <div class="profile-content">
+                        <section class="profile-user">
+                            <span class="profile-username">{{ profile['username'] }}</span>
+                            {% if is_own_profile %}
+                                <a class="edit-btn" href="/editProfile">Edit profile</a>
+                            {% else %}
+                                <button id="follow-btn" class="follow-btn {% if is_following %}unfollow{% else %}follow{% endif %}" data-user-id="{{ profile['fk_user_id'] }}">
+                                    {% if is_following %}
+                                        Unfollow
+                                    {% else %}
+                                        Follow
+                                    {% endif %}
+                                </button>
+                            {% endif %}
+                        </section>
+                        <section class="profile-info">
+                            <ul>
+                                <li>{{ profile['post_count'] }} posts</li>
+                                <li>{{ followers_count }} followers</li>
+                                <li>{{ following_count }} following</li>
+                            </ul>
+                        </section>
+                        <section class="profile-name">
+                            <span>
+                                {% if profile['name'] %}
+                                {{ profile['name'] }}
+                                {% endif %}
+                            </span>
+                        </section>
+                        <section class="profile-bio">
+                            <span>
+                                {% if profile['bio'] %}
+                                {{ profile['bio'] }}
+                                {% endif %}
+                            </span>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="posts">
+                    <hr>
+                    {% for post in posts %}
+                    <article class="post">
+                        <h2 class="post-title">{{ post['title'] }}</h2>
+                        <p class="post-content">{{ post['content'] }}</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </article>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/profile.js"></script>
+</body>
+
+</html>

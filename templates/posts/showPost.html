@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/showPost.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="page-container">
+            <div class="main-content">
+            </div>
+        </div>
+    </div>
+
+    <div class="showPost">
+        <div class="post-content">
+            <div class="post-header">
+                <a href="/showTagPosts/{{ tag['pk_tag_id'] }}">{{ tag['tag_name'] }}</a>
+                <button onclick="window.history.back();">close</button>
+            </div>
+            <div class="post-body">
+                <div class="showPost-title">
+                    <h1>{{ post['title'] }}</h1>
+                </div>
+                <div class="showPost-author">
+                    <div class="user-image">
+                        <a href="/profile/{{ post['fk_user_id'] }}">
+                            <img src="/static/assets/user.png" alt="User Image">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/profile/{{ post['fk_user_id'] }}">{{ author }}</a>
+                        <br>
+                        <span>{{ created_at }}</span>
+                    </div>
+                </div>
+                <span class="showPost-content">
+                    {{ post['content'] }}
+                </span>
+            </div>
+            <div class="post-comments">
+                <div class="comment">
+                    <h2>Comments:</h2>
+                    {% for comment in comments %}
+                    <p>{{ comment['username'] }}: {{ comment['content'] }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="post-footer">
+                <div class="like-section">
+                    <i class="fi fi-rs-heart like-icon" data-post-id="{{ post['pk_post_id'] }}"></i>
+                    <span class="likes-count">{{ post['likes_count'] }}</span>
+                    <i class="fi fi-rr-comment-alt"></i>
+                    <span class="likes-count">{{ post['comments_count'] }}</span>
+                </div>
+                <form action="/add_comment/{{ post['pk_post_id'] }}" method="POST">
+                    <input type="text" name="content" placeholder="Leave a comment..." required>
+                    <button type="submit" class="comment-button">發布</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/showPost.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+.extra-content {
+    grid-column: 3;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    position: sticky;
+    box-sizing: border-box;
+    width: 300px;
+    height: 100vh;
+    padding-top: 80px;
+    top: 0px;
+    align-self: start;
+    font-style: italic;
+    color: white;
+    z-index: 99;
+    gap: 10px;
+}
+
+.add-post {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0 20px 20px 20px;
+    width: 258px;
+    background-color: #414850;
+    border: #4a98ff 1px solid;
+    border-radius: 8px;
+    color: white;
+}
+
+#createPostButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #4a98ff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#createPostButton:hover {
+    background-color: #60a5ff;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 258px;
+    background-color: #414850;
+    border: #4a98ff 1px solid;
+    border-radius: 8px;
+    color: white;
+}
+
+.user-dashboard {
+    padding-top: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    width: 260px;
+}
+
+.user-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: #ffffff solid 3px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+}
+
+.user-names {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.name {
+    font-family: 'Segoe UI', Ubuntu;
+    font-weight: lighter;
+    font-size: 15px;
+    color: #cecece;
+}
+
+.user-action {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fffc68;
+}
