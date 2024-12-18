@@ -25,10 +25,6 @@ i{
     cursor: pointer;
 }
 
-i:hover {
-    font-size: 17px;
-}
-
 hr {
     border: none;
     border-top: 1px solid #a4aebb;

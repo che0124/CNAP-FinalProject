@@ -4,6 +4,15 @@ body {
     padding: 0;
 }
 
+.error-message {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    color: #ff5d5d;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .auth {
     display: flex;
     justify-content: center;

@@ -57,7 +57,7 @@
                     <i class="fi fi-rs-heart like-icon" data-post-id="{{ post['pk_post_id'] }}"></i>
                     <span class="likes-count">{{ post['likes_count'] }}</span>
                     <i class="fi fi-rr-comment-alt"></i>
-                    <span class="likes-count">{{ post['comments_count'] }}</span>
+                    <span class="comment-count">{{ post['comments_count'] }}</span>
                 </div>
                 <form action="/add_comment/{{ post['pk_post_id'] }}" method="POST">
                     <input type="text" name="content" placeholder="Leave a comment..." required>

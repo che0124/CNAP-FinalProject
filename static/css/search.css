@@ -8,3 +8,11 @@
     color: #414850;
     overflow-y: auto;
 }
+
+.search-bar {
+    padding: 20px;
+}
+
+.search-results  {
+    padding: 20px;
+}

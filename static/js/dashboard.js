@@ -17,7 +17,7 @@ function createDashboard(sessionData) {
                             <span class="name">Name</span>
                         </div>
                     </div>
-                    <a href="./../auth/login.html" class="user-action">Switch</a>
+                    <a href="/logout" class="user-action">Switch</a>
                 </div>
             </div>
         </div>

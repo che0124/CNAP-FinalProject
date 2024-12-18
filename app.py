@@ -35,9 +35,8 @@ def login_required(f):
 
 def hash_password(password):
     password = password.encode('utf-8')
-    salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password, salt)
-    return hashed_password, salt
+    hashed_password = bcrypt.hashpw(password)
+    return hashed_password
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
@@ -46,42 +45,48 @@ def register_user():
         email = request.form['email']
         password = request.form['password']
         password_confirmation = request.form['password_confirmation']
-
-        if not username or not email or not password:
-            return jsonify({'error': 'All fields are required'}), 400
-
-        if password != password_confirmation:
-            return jsonify({'error': 'Passwords do not match'}), 400
-
-        if len(password) < 6:
-            return jsonify({'error': 'Password must be at least 6 characters long'}), 400
-
-        if '@' not in email or '.' not in email:
-            return jsonify({'error': 'Invalid email format'}), 400
-
+        
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
         try:
-                # Check if username already exists
-                cur.execute('SELECT * FROM user WHERE username = ?', (username,))
-                if cur.fetchone():
-                    return jsonify({'error': 'Username already exists.'}), 400
+            # Check if username already exists
+            cur.execute('SELECT * FROM user WHERE username = ?', (username,))
+            if not username or not email    or not password or not password_confirmation:
+                flash('All fields are required', 'error')
+                return render_template('/auth/register.html')
+            
+            if cur.fetchone():
+                flash('Username already exists.', 'error')
+                return render_template('/auth/register.html')
 
-                # Check if email already exists
-                cur.execute('SELECT * FROM user WHERE email = ?', (email,))
-                if cur.fetchone():
-                    return jsonify({'error': 'Email already exists.'}), 400
-                
-                # Insert new user
-                cur.execute('INSERT INTO user (username, email) VALUES (?, ?)', (username, email))
-                user_id = cur.lastrowid
-                password_hash, salt = hash_password(password) 
-                cur.execute('INSERT INTO password (fk_user_id, hashed_password, salt) VALUES (?, ?, ?)',(user_id, password_hash, salt))
+            # Check if email already exists
+            cur.execute('SELECT * FROM user WHERE email = ?', (email,))
+            if cur.fetchone():
+                flash('Email already exists.', 'error')
+                return render_template('/auth/register.html')
+            
+            if '@' not in email or '.' not in email:
+                flash('Invalid email format', 'error')
+                return render_template('/auth/register.html')
 
-                cur.execute('INSERT INTO profile (fk_user_id, username) VALUES (?, ?)', (user_id, username))
+            if len(password) < 6 or len(password_confirmation) < 6:
+                flash('Password must be at least 6 characters long', 'error')
+                return render_template('/auth/register.html')
 
-                conn.commit()
-                return redirect(url_for('login'))
+            if password != password_confirmation:
+                flash('Passwords do not match', 'error')
+                return render_template('/auth/register.html')
+
+            # Insert new user
+            cur.execute('INSERT INTO user (username, email) VALUES (?, ?)', (username, email))
+            user_id = cur.lastrowid
+            password_hash = hash_password(password) 
+            cur.execute('INSERT INTO password (fk_user_id, hashed_password) VALUES (?, ?, ?)',(user_id, password_hash))
+
+            cur.execute('INSERT INTO profile (fk_user_id, username) VALUES (?, ?)', (user_id, username))    
+
+            conn.commit()
+            return redirect(url_for('login'))
             
         except sqlite3.IntegrityError as e:
             if 'UNIQUE constraint failed' in str(e):
@@ -110,7 +115,7 @@ def login():
 
         if user is None:
             flash('Email does not exist', 'danger')
-            return redirect(url_for('login'))
+            return render_template('/auth/login.html')
 
         cur.execute('SELECT hashed_password FROM password WHERE fk_user_id = ?', (user[0],))
         hashed_password = cur.fetchone()
@@ -127,7 +132,8 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Incorrect password', 'danger')
-            return redirect(url_for('login'))
+            return render_template('/auth/login.html')
+
 
     #Get login page
     return render_template('/auth/login.html', username=session.get('username'))
@@ -135,7 +141,6 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You have been logged out.', 'success')
     return redirect(url_for('login'))
 
 # Template Routes

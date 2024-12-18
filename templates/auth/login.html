@@ -19,8 +19,8 @@
                     <div class="auth-form-item">
                         <label for="email" class="auth-form-field-name">Email</label>
                         <div class="form-textbox">
-                            <input id="email" type="email" class="auth-form-control" name="email" value=""
-                                placeholder="Type your email" autocomplete="email" autofocus>
+                            <input id="email" class="auth-form-control" name="email" value="{{ request.form.email }}"
+                                placeholder="Type your email" autofocus required>
                             <span class="invalid-feedback" role="alert">
                                 <strong></strong>
                             </span>
@@ -31,14 +31,20 @@
                         <label for="password" class="auth-form-field-name">Password</label>
                         <div class="form-textbox">
                             <input id="password" type="password" class="auth-form-control" name="password"
-                                placeholder="Type your password" required autocomplete="current-password">
+                                placeholder="Type your password" required>
                             <span class="invalid-feedback" role="alert">
-                                <strong></strong>
+                                <strong></strong>                                                                           
                             </span>
                         </div>
                     </div>
 
-                    <div class="auth-form-item">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="error-message">{{ messages[0][1] }}</div>
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- <div class="auth-form-item">
                         <div class="form-check">
                             <div class="remember-me"> 
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember">
@@ -48,15 +54,13 @@
                                 <a class="auth-btn-link" href="#">Forgot Password?</a>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="auth-form-item">
-                    </div>
+                    </div> -->
 
                     <div class="auth-form-item">
                         <div class="form-submit">
-                            <button type="submit" class="auth-btn-primary" onclick="window.location.href='#';">LogIn</button>
-                            <button type="submit" class="auth-btn-secondary" onclick="window.location.href='#';">Customer Login</button>
+                            <button type="submit" class="auth-btn-primary">LogIn</button>
+                            <button type="button" class="auth-btn-secondary"
+                                onclick="window.location.href='/';">Customer Login</button>
                             <p>Don't have an account?
                                 <a class="signup" href="/register">Sign up</a>
                             </p>

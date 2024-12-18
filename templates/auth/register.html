@@ -21,21 +21,18 @@
                         <label for="username" class="auth-form-field-name">Username</label>
 
                         <div class="form-textbox">
-                            <input id="username" type="text"
-                                class="auth-form-control" name="username"
-                                placeholder="Type your username" required>
+                            <input id="username" type="text" class="auth-form-control" name="username"
+                                value="{{ request.form.username }}" placeholder="Type your username">
 
                         </div>
                     </div>
 
                     <div class="auth-form-item">
-                        <label for="email"
-                            class="auth-form-field-name">Email</label>
+                        <label for="email" class="auth-form-field-name">Email</label>
 
                         <div class="form-textbox">
-                            <input id="email" type="email"
-                                class="auth-form-control" name="email"
-                                placeholder="Type your email" required>
+                            <input id="email" class="auth-form-control" name="email" value="{{ request.form.email }}"
+                                placeholder="Type your email">
                         </div>
                     </div>
 
@@ -43,25 +40,30 @@
                         <label for="password" class="auth-form-field-name">Password</label>
 
                         <div class="form-textbox">
-                            <input id="password" type="password"
-                                class="auth-form-control" name="password" placeholder="Type your password" required
-                                autocomplete="new-password">
+                            <input id="password" type="password" class="auth-form-control" name="password"
+                                placeholder="Type your password" autocomplete="new-password">
 
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong></strong>
+                            </span>
                         </div>
                     </div>
 
                     <div class="auth-form-item">
-                        <label for="password-confirmation"
-                            class="auth-form-field-name">Confirm Password</label>
+                        <label for="password-confirmation" class="auth-form-field-name">Confirm Password</label>
 
                         <div class="form-textbox">
                             <input id="password-confirmation" type="password" class="auth-form-control"
-                                name="password_confirmation" placeholder="Confirm your password" required autocomplete="new-password">
+                                name="password_confirmation" placeholder="Confirm your password"
+                                autocomplete="new-password">
                         </div>
                     </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="error-message">{{ messages[0][1] }}</div>
+                        {% endif %}
+                    {% endwith %}
 
                     <div class="auth-form-item">
                         <div class="form-submit">
